@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     GameObject Car;
     GameObject Flag;
     GameObject Distance;
+    GameObject Score;
 
     // Start is called before the first frame update
     void Start()
@@ -15,12 +16,22 @@ public class GameManager : MonoBehaviour
         Car = GameObject.Find("car");
         Flag = GameObject.Find("flag");
         Distance = GameObject.Find("Distance");
+        Score = GameObject.Find("Score");
     }
 
     // Update is called once per frame
     void Update()
     {
         float Length = Flag.transform.position.x - Car.transform.position.x;
-        Distance.GetComponent<Text>().text = "¶ZÂ÷¥Ø¼ĞÁÙ¦³¡G" + Length.ToString("F2") + "¤½¤Ø";
+        Distance.GetComponent<Text>().text = "è·é›¢ç›®æ¨™" + Length.ToString("F2") + "m";
+        
+        //è¨ˆç®—åˆ†æ•¸
+        float ScoreNumber = 100 / Length;
+        //é¡¯ç¤ºåˆ†æ•¸
+        if (ScoreNumber <= 0)
+            ScoreNumber = 0;
+        Score.GetComponent<Text>().text = "åˆ†æ•¸" + ScoreNumber.ToString("F2") + "åˆ†";
+        
     }
+    
 }
